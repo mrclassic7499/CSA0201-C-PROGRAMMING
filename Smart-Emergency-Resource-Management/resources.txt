@@ -1,0 +1,11 @@
+101|Paracetamol|Medicine|Emergency|500|100
+102|Ventilator|Equipment|ICU|2|5
+103|Emergency Bed|Bed|Emergency|4|5
+104|Oxygen Cylinder|Supply|ICU|20|10
+105|Surgical Gloves|Supply|Surgery|300|100
+106|Defibrillator|Equipment|ICU|1|4
+107|IV Saline 500ml|Medicine|Emergency|40|100
+108|N95 Masks|Supply|Pharmacy|150|50
+109|Morphine Injection|Medicine|Pharmacy|15|10
+110|Stretcher|Equipment|Emergency|3|8
+111|Oxygen Mask|Supply|Emergency|80|50

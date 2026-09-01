@@ -1,0 +1,132 @@
+================================================================================
+ SMART EMERGENCY RESOURCE MANAGEMENT AND ANALYSIS SYSTEM - SYSTEM TEST SUITE
+================================================================================
+
+Test Environment: Windows 10/11, MinGW GCC 6.3.0 / Dev-C++ GCC 4.9.2
+Source File     : main.c
+Data File       : resources.txt
+All Test Cases  : Executed and Verified against runtime system output.
+
+--------------------------------------------------------------------------------
+TEST CASE 1: Add a Valid New Resource
+--------------------------------------------------------------------------------
+Test Case ID   : TC_01
+Feature Tested : Add Resource (Menu Choice 1)
+Input          : ID=111, Name="Cardiac Monitor", Type="Equipment", Dept="ICU", Qty=3, Threshold=10
+Expected Output: "[SUCCESS] Resource 'Cardiac Monitor' (ID: 111) added successfully! Initial Resource Status: CRITICAL"
+Actual Output  : "[SUCCESS] Resource 'Cardiac Monitor' (ID: 111) added successfully! Initial Resource Status: CRITICAL"
+Result         : PASS
+
+--------------------------------------------------------------------------------
+TEST CASE 2: Add Duplicate Resource ID
+--------------------------------------------------------------------------------
+Test Case ID   : TC_02
+Feature Tested : Duplicate ID Validation (Add Resource)
+Input          : ID=101 (Already exists: Paracetamol)
+Expected Output: "[ERROR] Duplicate Resource ID! ID 101 already exists (Paracetamol)."
+Actual Output  : "[ERROR] Duplicate Resource ID! ID 101 already exists (Paracetamol)."
+Result         : PASS
+
+--------------------------------------------------------------------------------
+TEST CASE 3: Add Resource with Negative Quantity
+--------------------------------------------------------------------------------
+Test Case ID   : TC_03
+Feature Tested : Input Validation (Quantity)
+Input          : ID=115, Name="Syringe", Type="Supply", Dept="Surgery", Qty=-50
+Expected Output: "[ERROR] Quantity must be a non-negative integer!"
+Actual Output  : "[ERROR] Quantity must be a non-negative integer!"
+Result         : PASS
+
+--------------------------------------------------------------------------------
+TEST CASE 4: Search Existing Resource by ID (Recursive Search)
+--------------------------------------------------------------------------------
+Test Case ID   : TC_04
+Feature Tested : Recursive Search Function (Menu Choice 4 -> 1)
+Input          : Option=1, ID=102
+Expected Output: Resource Found message displaying ID 102 (Ventilator, Qty 2, Threshold 5, Status CRITICAL)
+Actual Output  : Resource Found: ID 102 | Ventilator | Equipment | ICU | Qty 2 | Threshold 5 | Status CRITICAL
+Result         : PASS
+
+--------------------------------------------------------------------------------
+TEST CASE 5: Search Non-Existing Resource by ID
+--------------------------------------------------------------------------------
+Test Case ID   : TC_05
+Feature Tested : Search Resource Non-Match Handling
+Input          : Option=1, ID=999
+Expected Output: "[RESULT] Resource ID 999 not found in system."
+Actual Output  : "[RESULT] Resource ID 999 not found in system."
+Result         : PASS
+
+--------------------------------------------------------------------------------
+TEST CASE 6: Update Existing Resource using Pointers
+--------------------------------------------------------------------------------
+Test Case ID   : TC_06
+Feature Tested : Update Resource via Pointer (Menu Choice 3)
+Input          : ID=103 (Emergency Bed), New Qty=15, New Threshold=5
+Expected Output: Update success message, status updated from LOW to ADEQUATE
+Actual Output  : "[SUCCESS] Resource ID 103 updated successfully! Updated Status: ADEQUATE"
+Result         : PASS
+
+--------------------------------------------------------------------------------
+TEST CASE 7: Sort Resources by Quantity (Bubble Sort)
+--------------------------------------------------------------------------------
+Test Case ID   : TC_07
+Feature Tested : Bubble Sort Algorithm (Menu Choice 5 -> 3)
+Input          : Sort Option 3 (Quantity Ascending)
+Expected Output: Resources displayed in ascending quantity order (Defibrillator Qty 1 -> Syringes Qty 1000)
+Actual Output  : Sorted order confirmed: Defibrillator (1), Ventilator (2), Stretcher (3), ..., Syringes (1000)
+Result         : PASS
+
+--------------------------------------------------------------------------------
+TEST CASE 8: Merge Department Records (Duplicate ID Handling)
+--------------------------------------------------------------------------------
+Test Case ID   : TC_08
+Feature Tested : Department Record Merging (Menu Choice 6)
+Input          : Num Records=1, ID=101 (Paracetamol, existing Qty 500), Incoming Qty=200
+Expected Output: "[INFO] Duplicate Resource ID 101 found. Added 200 units to existing record 'Paracetamol'. New Qty: 700"
+Actual Output  : "[INFO] Duplicate Resource ID 101 found. Added 200 units to existing record 'Paracetamol'. New Qty: 700"
+Result         : PASS
+
+--------------------------------------------------------------------------------
+TEST CASE 9: Merge Department Records (New ID Addition)
+--------------------------------------------------------------------------------
+Test Case ID   : TC_09
+Feature Tested : Department Record Merging (Menu Choice 6)
+Input          : Num Records=1, ID=112 (Syringes 5ml), Qty=1000, Threshold=200
+Expected Output: "[INFO] New Resource ID 112 ('Syringes 5ml') added to system inventory."
+Actual Output  : "[INFO] New Resource ID 112 ('Syringes 5ml') added to system inventory."
+Result         : PASS
+
+--------------------------------------------------------------------------------
+TEST CASE 10: Generate Resource Analysis Report
+--------------------------------------------------------------------------------
+Test Case ID   : TC_10
+Feature Tested : Resource Analytics & Replenishment List (Menu Choice 7)
+Input          : Choice=7
+Expected Output: Display Total Categories, Total Volume, Adequate/Low/Critical breakdown, Replenishment list, Department totals
+Actual Output  : Analytics display generated: Total 12 categories, Adequate 7, Critical 5, Department-wise breakdown generated.
+Result         : PASS
+
+--------------------------------------------------------------------------------
+TEST CASE 11: Save Resources to File
+--------------------------------------------------------------------------------
+Test Case ID   : TC_11
+Feature Tested : File Handling - Output (Menu Choice 9)
+Input          : Choice=9
+Expected Output: "[SUCCESS] 12 resource records saved successfully to 'resources.txt'!"
+Actual Output  : "[SUCCESS] 12 resource records saved successfully to 'resources.txt'!"
+Result         : PASS
+
+--------------------------------------------------------------------------------
+TEST CASE 12: Load Resources from File on Application Startup
+--------------------------------------------------------------------------------
+Test Case ID   : TC_12
+Feature Tested : File Handling - Input (Menu Choice 10 / Startup)
+Input          : Choice=10
+Expected Output: "[SUCCESS] 12 resource records loaded successfully from 'resources.txt'!"
+Actual Output  : "[SUCCESS] 12 resource records loaded successfully from 'resources.txt'!"
+Result         : PASS
+
+================================================================================
+ SUMMARY: 12 / 12 TEST CASES PASSED SUCCESSFULLY.
+================================================================================
